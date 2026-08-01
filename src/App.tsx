@@ -40,31 +40,36 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col font-sans selection:bg-emerald-500/20 selection:text-emerald-300">
-      {/* Header */}
-      <header className="sticky top-0 z-50 bg-slate-900/80 backdrop-blur-md border-b border-emerald-500/20 px-4 py-3 shadow-lg">
+      {/* Header Ala Hacker */}
+      <header className="sticky top-0 z-50 bg-slate-900/90 backdrop-blur-md border-b border-emerald-500/30 px-4 py-3 shadow-xl">
         <div className="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3">
+          
+          {/* Logo & Terminal Bar Style */}
           <div className="flex items-center gap-3 cursor-pointer" onClick={() => setSelectedSurah(null)}>
-            <div className="p-2 bg-emerald-500/10 border border-emerald-500/30 rounded-xl text-emerald-400">
+            <div className="p-2 bg-emerald-500/10 border border-emerald-500/40 rounded-xl text-emerald-400 shadow-[0_0_10px_rgba(0,255,102,0.15)]">
               <BookOpen className="w-6 h-6" />
             </div>
             <div>
-              <h1 className="text-lg font-bold bg-gradient-to-r from-emerald-400 to-teal-200 bg-clip-text text-transparent">
-                MHD Qur'an
+              <div className="flex items-center gap-2 mb-0.5">
+                <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                <span className="text-[10px] font-mono text-emerald-400 tracking-wider">root@mhd-quran:~#</span>
+              </div>
+              <h1 className="text-lg font-bold font-mono tracking-wide text-white drop-shadow-[0_0_8px_rgba(0,255,102,0.4)]">
+                MHD_QUR'AN
               </h1>
-              <p className="text-xs text-slate-400">Al-Qur'an Digital Multibahasa Profesional</p>
             </div>
           </div>
 
           {/* Pilihan Bahasa */}
-          <div className="flex items-center gap-2 bg-slate-950 border border-slate-800 rounded-xl px-3 py-1.5 shadow-inner">
+          <div className="flex items-center gap-2 bg-slate-950 border border-emerald-500/30 rounded-xl px-3 py-1.5 shadow-inner">
             <Globe className="w-4 h-4 text-emerald-400" />
             <select
               value={selectedLang}
               onChange={(e) => setSelectedLang(e.target.value)}
-              className="bg-transparent text-sm text-slate-200 focus:outline-none cursor-pointer"
+              className="bg-transparent text-sm text-slate-200 font-mono focus:outline-none cursor-pointer"
             >
               {LANGUAGES.map((lang) => (
-                <option key={lang.code} value={lang.edition} className="bg-slate-900 text-slate-200">
+                <option key={lang.code} value={lang.edition} className="bg-slate-900 text-slate-200 font-sans">
                   {lang.name}
                 </option>
               ))}
@@ -81,11 +86,11 @@ export default function App() {
             {/* Banner / Hero Kecil */}
             <div className="relative mb-8 p-6 rounded-2xl bg-gradient-to-r from-emerald-950/40 via-slate-900 to-teal-950/30 border border-emerald-500/20 shadow-xl overflow-hidden">
               <div className="relative z-10 max-w-xl">
-                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 mb-3">
-                  <Sparkles className="w-3.5 h-3.5" /> Baca & Renungkan
+                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-mono bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 mb-3">
+                  <Sparkles className="w-3.5 h-3.5" /> [SECURE_MODE] Baca & Renungkan
                 </span>
                 <h2 className="text-2xl font-bold mb-2">"Sebaik-baik kalian adalah orang yang mempelajari Al-Qur'an dan mengajarkannya."</h2>
-                <p className="text-xs text-slate-400">Pilih surah di bawah ini untuk mulai membaca lengkap dengan terjemahan pilihan.</p>
+                <p className="text-xs text-slate-400 font-mono">&gt; Pilih surah di bawah ini untuk memulai membaca lengkap dengan terjemahan pilihan.</p>
               </div>
             </div>
 
@@ -103,8 +108,8 @@ export default function App() {
 
             {/* List Kartu Surat */}
             {loading ? (
-              <div className="text-center py-20 text-emerald-400 animate-pulse font-medium">
-                Memuat daftar surah...
+              <div className="text-center py-20 text-emerald-400 animate-pulse font-mono text-sm">
+                root@mhd-quran:~# fetching surah database...
               </div>
             ) : (
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -115,7 +120,7 @@ export default function App() {
                     className="group relative bg-slate-900/60 hover:bg-slate-900 border border-slate-800/80 hover:border-emerald-500/40 p-4 rounded-2xl cursor-pointer transition-all duration-300 shadow-sm hover:shadow-emerald-500/5 flex items-center justify-between"
                   >
                     <div className="flex items-center gap-3.5">
-                      <div className="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold text-sm group-hover:bg-emerald-500 group-hover:text-slate-950 transition-colors">
+                      <div className="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold text-sm font-mono group-hover:bg-emerald-500 group-hover:text-slate-950 transition-colors">
                         {surah.number}
                       </div>
                       <div>
@@ -142,14 +147,14 @@ export default function App() {
           <div>
             <button
               onClick={() => setSelectedSurah(null)}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-900 border border-slate-800 text-sm font-medium text-slate-300 hover:text-emerald-400 hover:border-emerald-500/30 transition-all mb-6 cursor-pointer shadow-sm"
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-900 border border-slate-800 text-sm font-medium text-slate-300 hover:text-emerald-400 hover:border-emerald-500/30 transition-all mb-6 cursor-pointer shadow-sm font-mono"
             >
-              <ArrowLeft className="w-4 h-4" /> Kembali ke Daftar Surat
+              <ArrowLeft className="w-4 h-4" /> cd .. / Kembali
             </button>
 
             {loadingDetail ? (
-              <div className="text-center py-24 text-emerald-400 animate-pulse font-medium">
-                Memuat ayat-ayat Al-Qur'an...
+              <div className="text-center py-24 text-emerald-400 animate-pulse font-mono text-sm">
+                root@mhd-quran:~# decrypting & loading ayahs...
               </div>
             ) : surahDetail ? (
               <div>
@@ -158,7 +163,7 @@ export default function App() {
                   <h2 className="text-3xl font-bold text-emerald-400 mb-2">
                     {surahDetail.surahInfo.englishName}
                   </h2>
-                  <p className="text-sm text-slate-400 mb-4">
+                  <p className="text-sm text-slate-400 mb-4 font-mono">
                     {surahDetail.surahInfo.englishNameTranslation} • {surahDetail.surahInfo.revelationType} • {surahDetail.surahInfo.numberOfAyahs} Ayat
                   </p>
                   <div className="text-4xl font-arabic text-emerald-200 font-bold mb-2">
@@ -181,10 +186,10 @@ export default function App() {
                         className="bg-slate-900/60 border border-slate-800/80 p-6 rounded-2xl shadow-sm space-y-4"
                       >
                         <div className="flex items-center justify-between">
-                          <span className="w-8 h-8 rounded-lg bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 flex items-center justify-center text-xs font-bold">
+                          <span className="w-8 h-8 rounded-lg bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 flex items-center justify-center text-xs font-bold font-mono">
                             {ayah.numberInSurah}
                           </span>
-                          <span className="text-xs text-slate-500">
+                          <span className="text-xs text-slate-500 font-mono">
                             Juz {ayah.juz}
                           </span>
                         </div>
@@ -208,15 +213,15 @@ export default function App() {
                 </div>
               </div>
             ) : (
-              <div className="text-center py-20 text-red-400">Gagal memuat detail surat.</div>
+              <div className="text-center py-20 text-red-400 font-mono">[ERROR] Gagal memuat detail surat.</div>
             )}
           </div>
         )}
       </main>
 
       {/* Footer */}
-      <footer className="mt-auto border-t border-slate-800/80 bg-slate-900/40 py-6 text-center text-xs text-slate-500">
-        <p>MHD Qur'an Digital • Dibangun dengan Vite, React & Tailwind CSS</p>
+      <footer className="mt-auto border-t border-slate-800/80 bg-slate-900/40 py-6 text-center text-xs text-slate-500 font-mono">
+        <p>root@mhd-quran:~$ secured via Vite, React & Cloudflare Workers</p>
       </footer>
     </div>
   );
